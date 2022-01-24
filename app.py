@@ -1,5 +1,5 @@
 from flask import Flask, render_template, jsonify
-from .model import RecommendationSystem
+from .model import Recommendation_System
 
 app = Flask(__name__)
 
@@ -22,5 +22,3 @@ def getRecommendations(username):
 
 #run app
 app.run(debug=True)
-
-# <!-- FLASK_APP=app.py FLASK_ENV=development flask run -->
