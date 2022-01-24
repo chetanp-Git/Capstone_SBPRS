@@ -51,11 +51,7 @@ class Recommendation_System():
         
         list_top_20_products = df_top_20_user_recommendations.sort_values(by="Positive_sentiment_percent", ascending=False)['Product'].tolist()
         
-        return list_top_20_products[:5]
+        return list_top_20_products[:5], ''
     except Exception as e:
         error = f"{str(e)}: Something went wrong! Please check the username and try again."
         return '', error
-
-        
-rec = Recommendation_System()
-rec.get_top_5_recommendations('00sab00')
