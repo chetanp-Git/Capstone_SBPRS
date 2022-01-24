@@ -9,9 +9,7 @@ class Recommendation_System():
     self.sentiment_analysis_model = pickle.load(open('./pickles/final_sentiment_analysis.pkl', 'rb'))
     self.vectorizer_model = pickle.load(open('./pickles/tfidf_vectorizer.pkl', 'rb'))
 
-  def get_top_5_recommendations(self, username):
-    """
-    """
+  def get_top_5_recommendations(self, user):
     
     try:
         #extracting top 20 products from the recommendation model for given user
@@ -19,7 +17,7 @@ class Recommendation_System():
         list_top_20_recommendations = top_20_user_recommendations.index.tolist()
       
         print('top_20_product_recommendations_list :')
-        print(top_20_product_recommendations_list)
+        print(list_top_20_recommendations)
         
         product_positive_sentiment_percent = []
         
@@ -27,17 +25,17 @@ class Recommendation_System():
         for product in list_top_20_recommendations:
         
             #extract the required reviews data for the given product
-            df_product = df_recommendation[df_recommendation['name'] == product][['name','reviews_title', 'reviews_text']]
+            df_product = self.df_recommendation[self.df_recommendation['name'] == product][['name','reviews_title', 'reviews_text']]
     
             #extract features from the review text using TF-IDF vectorizer
-            tfidf_model = vectorizer_model.transform(df_product['reviews_text'])
-            df_tfidf = pd.DataFrame(tfidf_model.toarray(), columns=vectorizer_model.get_feature_names())
+            tfidf_model = self.vectorizer_model.transform(df_product['reviews_text'])
+            df_tfidf = pd.DataFrame(tfidf_model.toarray(), columns=self.vectorizer_model.get_feature_names())
     
             #cutoff for the RandomForest model
             cutoff = 0.48
     
             # Make sentiment prediction using the final Random Forest model
-            y_proba = sentiment_analysis_model.predict_proba(df_tfidf)[:, 1]
+            y_proba = self.sentiment_analysis_model.predict_proba(df_tfidf)[:, 1]
             y_pred = list(map(lambda x: 1 if x >= cutoff else 0, y_proba.tolist()))
 
             # Calculate Positive Sentiment percentage out of the predicted sentiment
