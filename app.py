@@ -1,5 +1,5 @@
 from flask import Flask, render_template, jsonify
-from .model import Recommendation_System
+from model import Recommendation_System
 
 app = Flask(__name__)
 
@@ -9,8 +9,8 @@ def index():
 
 @app.route("/get-recommendations/<username>", methods=['GET'])
 def getRecommendations(username):
-  print('---- USERNAME ', username);
-  recommendation_system = RecommendationSystem()
+  print('-USERNAME-', username);
+  recommendation_system = Recommendation_System()
   recommended_products, error = recommendation_system.get_top_5_recommendations(username)
 
   if (error):
