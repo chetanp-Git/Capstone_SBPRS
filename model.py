@@ -4,10 +4,10 @@ import pickle
 class Recommendation_System():
   def __init__(self):
    
-    self.df_recommendation = pd.read_pickle('.pickle/reviews_data.pkl')
-    self.recommendation_model = pickle.load(open('.pickle/user_final_rating.pkl', 'rb'))
-    self.sentiment_analysis_model = pickle.load(open('.pickle/final_sentiment_analysis.pkl', 'rb'))
-    self.vectorizer_model = pickle.load(open('.pickle/tfidf_vectorizer.pkl', 'rb'))
+    self.df_recommendation = pd.read_pickle('./pickles/reviews_data.pkl')
+    self.recommendation_model = pickle.load(open('./pickles/user_final_rating.pkl', 'rb'))
+    self.sentiment_analysis_model = pickle.load(open('./pickles/final_sentiment_analysis.pkl', 'rb'))
+    self.vectorizer_model = pickle.load(open('./pickles/tfidf_vectorizer.pkl', 'rb'))
 
   def get_top_5_recommendations(self, username):
     """

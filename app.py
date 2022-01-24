@@ -1,5 +1,5 @@
 from flask import Flask, render_template, jsonify
-from model import RecommendationSystem
+from .model import RecommendationSystem
 
 app = Flask(__name__)
 
