@@ -20,7 +20,7 @@ def getRecommendations(username):
 
   return jsonify({"products": recommended_products})
 
-run app
+#run app
 app.run(debug=True)
 
 # <!-- FLASK_APP=app.py FLASK_ENV=development flask run -->
