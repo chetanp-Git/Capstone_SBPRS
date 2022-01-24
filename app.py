@@ -21,4 +21,4 @@ def getRecommendations(username):
   return jsonify({"products": recommended_products})
 
 #run app
-app.run(debug=True)
+app.run(debug=True, port=42)
